@@ -2,7 +2,7 @@ from django.core.exceptions import PermissionDenied
 from django.db import transaction, router
 from django.http import Http404, HttpResponseRedirect
 from django.template.response import TemplateResponse
-from django import VERSION as django_version
+from django.utils import six
 from django.utils.encoding import force_text
 from django.utils.html import escape
 from django.utils.translation import ugettext as _
@@ -16,13 +16,6 @@ from xadmin.views.base import ModelAdminView, filter_hook, csrf_protect_m
 
 class DeleteAdminView(ModelAdminView):
     delete_confirmation_template = None
-
-    def __init__(self, request, *args, **kwargs):
-        if django_version > (2, 0):
-            for model in self.admin_site._registry:
-                if not hasattr(self.admin_site._registry[model], 'has_delete_permission'):
-                    setattr(self.admin_site._registry[model], 'has_delete_permission', self.has_delete_permission)
-        super(DeleteAdminView, self).__init__(request, *args, **kwargs)
 
     def init_request(self, object_id, *args, **kwargs):
         "The 'delete' admin view for this model."
@@ -38,12 +31,8 @@ class DeleteAdminView(ModelAdminView):
 
         # Populate deleted_objects, a data structure of all related objects that
         # will also be deleted.
-        if django_version > (2, 1):
-            (self.deleted_objects, model_count, self.perms_needed, self.protected) = get_deleted_objects(
-                [self.obj], self.opts, self.admin_site)
-        else:
-            (self.deleted_objects, model_count, self.perms_needed, self.protected) = get_deleted_objects(
-                [self.obj], self.opts, self.request.user, self.admin_site, using)
+        (self.deleted_objects, model_count, self.perms_needed, self.protected) = get_deleted_objects(
+            [self.obj], self.opts, self.request.user, self.admin_site, using)
 
     @csrf_protect_m
     @filter_hook
@@ -63,7 +52,7 @@ class DeleteAdminView(ModelAdminView):
         self.delete_model()
 
         response = self.post_response()
-        cls_str = str
+        cls_str = str if six.PY3 else basestring
         if isinstance(response, cls_str):
             response = HttpResponseRedirect(response)
         return response

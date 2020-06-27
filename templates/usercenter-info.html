@@ -1,9 +1,9 @@
 {% extends 'usercenter-base.html' %}
-{% load static %}
-{% block title %} 个人信息 | mtianyan慕课小站{% endblock %}
-
+{% block title %}
+    个人信息
+{% endblock %}
 {% block custom_bread %}
-        <section>
+    <section>
         <div class="wp">
             <ul  class="crumbs">
                 <li><a href="{% url 'index' %}">首页</a>></li>
@@ -12,10 +12,10 @@
             </ul>
         </div>
     </section>
-{% endblock %}
+    {% endblock %}
 
-{% block right_content %}
-        <div class="right">
+{% block custom_right_content %}
+    <div class="right">
 		<div class="personal_des ">
 			<div class="head" style="border:1px solid #eaeaea;">
 				<h1>个人信息</h1>
@@ -33,6 +33,7 @@
                                 <input type="file" name="image" id="avatarUp" class="js-img-up"/>
                             </span>
                         </label>
+                        <input type='hidden' name='csrfmiddlewaretoken' value='799Y6iPeEDNSGvrTu3noBrO4MBLv6enY' />
                         {% csrf_token %}
                     </form>
                     <div style="border-top:1px solid #eaeaea;margin-top:30px;">
@@ -42,19 +43,19 @@
 				<form class="perinform" id="jsEditUserForm" autocomplete="off">
 					<ul class="right">
 						<li>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：
-                           <input type="text" name="nick_name" id="nick_name" value="{{ request.user.nick_name|default_if_none:'' }}" maxlength="10">
+                           <input type="text" name="nick_name" id="nick_name" value="{{ request.user.nick_name }}" maxlength="10">
                             <i class="error-tips"></i>
                         </li>
 						<li>生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：
-                           <input type="text" id="birth_day" name="birthday" value="{{ request.user.birthday|date:'Y-m-d' }}" readonly="readonly"/>
+                           <input type="text" id="birth_day" name="birday" value="{{ request.user.birthday }}" readonly="readonly"/>
                             <i class="error-tips"></i>
 						</li>
 						<li>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：
-							<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"  name="gender" value="male" {% ifequal request.user.gender "male" %}checked="checked"{% endifequal %} >男</label>
-							<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="female" {% ifequal request.user.gender "female" %}checked="checked"{% endifequal %}>女</label>
+							<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"  name="gender"  value="male" {% if request.user.gender == 'male' %}checked="checked"{% endif %}>男</label>
+							<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="female" {% if request.user.gender == 'female' %}checked="checked"{% endif %}">女</label>
 						</li>
 						<li class="p_infor_city">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：
-                            <input type="text" name="address" id="address" placeholder="请输入你的地址" value="{{ request.user.address|default_if_none:'' }}" maxlength="10">
+                            <input type="text" name="adress" id="adress" placeholder="请输入你的地址" value="{{ request.user.adress }}" maxlength="10">
 						    <i class="error-tips"></i>
                         </li>
 						<li>手&nbsp;&nbsp;机&nbsp;&nbsp;号：
@@ -68,7 +69,7 @@
 							<input type="button" id="jsEditUserBtn" value="保存">
 						</li>
 					</ul>
-                                        {% csrf_token %}
+                    {% csrf_token %}
 				</form>
 			</div>
 		</div>

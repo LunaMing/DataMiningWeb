@@ -7,6 +7,7 @@ from django.contrib.contenttypes.forms import BaseGenericInlineFormSet, generic_
 from django.template import loader
 from django.template.loader import render_to_string
 from django.contrib.auth import get_permission_codename
+from django.utils import six
 from django.utils.encoding import smart_text
 from crispy_forms.utils import TEMPLATE_PACK
 
@@ -114,7 +115,7 @@ style_manager.register_style("table", TableInlineStyle)
 
 def replace_field_to_value(layout, av):
     if layout:
-        cls_str = str
+        cls_str = str if six.PY3 else basestring
         for i, lo in enumerate(layout.fields):
             if isinstance(lo, Field) or issubclass(lo.__class__, Field):
                 layout.fields[i] = ShowField(av, *lo.fields, **lo.attrs)
@@ -226,11 +227,10 @@ class InlineModelAdmin(ModelFormAdminView):
                 form.readonly_fields = []
                 inst = form.save(commit=False)
                 if inst:
-                    meta_field_names = [field.name for field in inst._meta.get_fields()]
                     for readonly_field in readonly_fields:
                         value = None
                         label = None
-                        if readonly_field in meta_field_names:
+                        if readonly_field in inst._meta.get_all_field_names():
                             label = inst._meta.get_field(readonly_field).verbose_name
                             value = smart_text(getattr(inst, readonly_field))
                         elif inspect.ismethod(getattr(inst, readonly_field, None)):

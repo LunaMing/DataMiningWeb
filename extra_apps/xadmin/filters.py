@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 from django.template.loader import get_template
 from django.template.context import Context
+from django.utils import six
 from django.utils.safestring import mark_safe
 from django.utils.html import escape, format_html
 from django.utils.text import Truncator
@@ -47,7 +48,8 @@ class BaseFilter(object):
 
     def form_params(self):
         arr = map(lambda k: FILTER_PREFIX + k, self.used_params.keys())
-        arr = list(arr)
+        if six.PY3:
+            arr = list(arr)
         return self.admin_view.get_form_params(remove=arr)
 
     def has_output(self):
@@ -126,13 +128,15 @@ class FieldFilter(BaseFilter):
             lambda kv: setattr(self, 'lookup_' + kv[0], kv[1]),
             self.context_params.items()
         )
-        list(arr)
+        if six.PY3:
+            list(arr)
 
     def get_context(self):
         context = super(FieldFilter, self).get_context()
         context.update(self.context_params)
         obj = map(lambda k: FILTER_PREFIX + k, self.used_params.keys())
-        obj = list(obj)
+        if six.PY3:
+            obj = list(obj)
         context['remove_url'] = self.query_string({}, obj)
         return context
 
@@ -334,6 +338,7 @@ class RelatedFieldSearchFilter(FieldFilter):
         return related_modeladmin and getattr(related_modeladmin, 'relfield_style', None) in ('fk-ajax', 'fk-select')
 
     def __init__(self, field, request, params, model, model_admin, field_path):
+        print('-------------------------')
         other_model = get_model_from_relation(field)
         if hasattr(field, 'remote_field'):
             rel_name = field.remote_field.get_related_field().name

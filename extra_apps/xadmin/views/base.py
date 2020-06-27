@@ -16,6 +16,7 @@ from django.urls.base import reverse
 from django.http import HttpResponse
 from django.template import Context, Template
 from django.template.response import TemplateResponse
+from django.utils import six
 from django.utils.decorators import method_decorator, classonlymethod
 from django.utils.encoding import force_text, smart_text, smart_str
 from django.utils.functional import Promise
@@ -88,7 +89,7 @@ def inclusion_tag(file_name, context_class=Context, takes_context=False):
         def method(self, context, nodes, *arg, **kwargs):
             _dict = func(self, context, nodes, *arg, **kwargs)
             from django.template.loader import get_template, select_template
-            cls_str = str
+            cls_str = str if six.PY3 else basestring
             if isinstance(file_name, Template):
                 t = file_name
             elif not isinstance(file_name, cls_str) and is_iterable(file_name):
@@ -525,10 +526,11 @@ class ModelAdminView(CommAdminView):
         Get model object instance by object_id, used for change admin view
         """
         # first get base admin view property queryset, return default model queryset
-        model = self.model
+        queryset = self.queryset()
+        model = queryset.model
         try:
             object_id = model._meta.pk.to_python(object_id)
-            return model.objects.get(pk=object_id)
+            return queryset.get(pk=object_id)
         except (model.DoesNotExist, ValidationError):
             return None
 
@@ -597,6 +599,6 @@ class ModelAdminView(CommAdminView):
         codename = get_permission_codename('change', self.opts)
         return ('change' not in self.remove_permissions) and self.user.has_perm('%s.%s' % (self.app_label, codename))
 
-    def has_delete_permission(self, request=None, obj=None):
+    def has_delete_permission(self, obj=None):
         codename = get_permission_codename('delete', self.opts)
         return ('delete' not in self.remove_permissions) and self.user.has_perm('%s.%s' % (self.app_label, codename))

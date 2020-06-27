@@ -1,16 +1,18 @@
+
 {% extends 'org_base.html' %}
-{% block title %}机构讲师详情 | mtianyan慕课小站{% endblock %}
+{% load staticfiles %}
+
+<title>{% block title %}机构教师页--新东方{% endblock %}</title>
 {% block page_path %}机构讲师{% endblock %}
-{% load static %}
+
 {% block right_form %}
-<div class="right companycenter layout" >
+ <div class="right companycenter layout" >
         <div class="head">
             <h1>机构讲师</h1>
         </div>
         <div class="messagelist">
             <div class=" butler_list butler-fav-box">
-
-{% for teacher in all_teachers %}
+                {% for teacher in all_teacher %}
                 <dl class="des users">
                     <dt>
                         <a href="{% url 'org:teacher_detail' teacher.id %}">
@@ -25,12 +27,11 @@
                         </h1>
                         <ul class="cont clearfix">
                             <li class="time">工作年限：<span>{{ teacher.work_years }}</span></li>
-                            <li class="c7">课程数：<span>{{ teacher.course_set.count }}</span></li>
+                            <li class="c7">课程数：<span>3</span></li>
                         </ul>
                     </dd>
                 </dl>
-{% endfor %}
-
+                {% endfor %}
 
 
 
@@ -40,3 +41,12 @@
         </div>
     </div>
 {% endblock %}
+
+
+
+
+
+
+
+
+

@@ -5,7 +5,7 @@ from django.db.models.sql.query import LOOKUP_SEP
 from django.db.models.deletion import Collector
 from django.db.models.fields.related import ForeignObjectRel
 from django.forms.forms import pretty_name
-from django.utils import formats
+from django.utils import formats, six
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
 from django.utils.text import capfirst
@@ -20,8 +20,10 @@ from django import VERSION as version
 import datetime
 import decimal
 
-
-from django.templatetags.static import static
+if 'django.contrib.staticfiles' in settings.INSTALLED_APPS:
+    from django.contrib.staticfiles.templatetags.staticfiles import static
+else:
+    from django.templatetags.static import static
 
 try:
     import json
@@ -41,7 +43,7 @@ def xstatic(*tags):
     fs = []
     lang = get_language()
 
-    cls_str = str
+    cls_str = str if six.PY3 else basestring
     for tag in tags:
         try:
             for p in tag.split('.'):
@@ -95,8 +97,8 @@ def lookup_needs_distinct(opts, lookup_path):
     """
     field_name = lookup_path.split('__', 1)[0]
     field = opts.get_field(field_name)
-    if ((hasattr(field, 'remote_field') and
-         isinstance(field.remote_field, models.ManyToManyRel)) or
+    if ((hasattr(field, 'rel') and
+         isinstance(field.rel, models.ManyToManyRel)) or
         (is_related_field(field) and
          not field.field.unique)):
         return True
@@ -126,7 +128,7 @@ def quote(s):
     quoting is slightly different so that it doesn't get automatically
     unquoted by the Web browser.
     """
-    cls_str = str
+    cls_str = str if six.PY3 else basestring
     if not isinstance(s, cls_str):
         return s
     res = list(s)
@@ -141,7 +143,7 @@ def unquote(s):
     """
     Undo the effects of quote(). Based heavily on urllib.unquote().
     """
-    cls_str = str
+    cls_str = str if six.PY3 else basestring
     if not isinstance(s, cls_str):
         return s
     mychr = chr
@@ -369,8 +371,8 @@ def get_model_from_relation(field):
         return field.related_model
     elif is_related_field(field):
         return field.model
-    elif getattr(field, 'remote_field'):  # or isinstance?
-        return field.remote_field.to
+    elif getattr(field, 'rel'):  # or isinstance?
+        return field.rel.to
     else:
         raise NotRelationField
 
@@ -445,8 +447,8 @@ def get_limit_choices_to_from_path(model, path):
     fields = get_fields_from_path(model, path)
     fields = remove_trailing_data_field(fields)
     limit_choices_to = (
-        fields and hasattr(fields[-1], 'remote_field') and
-        getattr(fields[-1].remote_field, 'limit_choices_to', None))
+        fields and hasattr(fields[-1], 'rel') and
+        getattr(fields[-1].rel, 'limit_choices_to', None))
     if not limit_choices_to:
         return models.Q()  # empty Q
     elif isinstance(limit_choices_to, models.Q):

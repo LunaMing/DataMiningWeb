@@ -86,7 +86,7 @@ $(function(){
             cache: false,
             type: "POST",
             dataType:'json',
-            url:"/users/update/pwd/",
+            url:"",
             data:$('#jsResetPwdForm').serialize(),
             async: true,
             success: function(data) {
@@ -125,7 +125,7 @@ $(function(){
     });
 
 
-    //input获得焦点样式
+     //input获得焦点样式
     $('.perinform input[type=text]').focus(function(){
         $(this).parent('li').addClass('focus');
     });
@@ -172,8 +172,8 @@ $(function(){
                     _showValidateError($('#nick_name'), data.nick_name);
                 }else if(data.birday){
                    _showValidateError($('#birth_day'), data.birday);
-                }else if(data.address){
-                   _showValidateError($('#address'), data.address);
+                }else if(data.adress){
+                   _showValidateError($('#adress'), data.adress);
                 }else if(data.status == "failure"){
                      Dml.fun.showTipsDialog({
                         title: '保存失败',

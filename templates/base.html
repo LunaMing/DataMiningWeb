@@ -21,15 +21,17 @@
 </head>
 <body>
 
+{#头部#}
+{#包括文字标题、logo、登陆注册、搜索、子页面选项栏#}
 <section class="headerwrap ">
     <header>
         <div class=" header">
             <div class="top">
                 <div class="wp">
                     <div class="fl"><p>在线教学实验平台</p></div>
-{#                    <div  class="fl"><p><a style="color: white;font-size: 18px;" href="http://www.cnblogs.com/derek1184405959/"><b>我的博客园地址</b></a></p></div>#}
+                    {#                    <div  class="fl"><p><a style="color: white;font-size: 18px;" href="http://www.cnblogs.com/derek1184405959/"><b>我的博客园地址</b></a></p></div>#}
                     <!--登录后跳转-->
-
+                    {#如果用户已经登录，显示头像昵称等#}
                     {% if request.user.is_authenticated %}
                         <div class="personal">
                             <dl class="user fr">
@@ -138,6 +140,8 @@
     </div>
 </footer>{% endcomment %}
 
+{#侧边栏#}
+{#里面就只有一个回到顶部#}
 <section>
     <ul class="sidebar">
         {% comment %}<li class="qq">

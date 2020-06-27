@@ -14,6 +14,7 @@
                             {% for banner in all_banners %}
                             <li>
                                     <a href="{{ banner.url }}">
+                                        {#todo 轮播图的img文件调用位置#}
                                         <img width="1200" height="478" src="{{ MEDIA_URL }}{{ banner.image }}" />
                                     </a>
                                 </li>

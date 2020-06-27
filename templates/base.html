@@ -66,12 +66,12 @@
                     <div class="searchbox fr">
                         <div class="selectContainer fl">
                             <span class="selectOption" id="jsSelectOption" data-value="course">
-                                公开课
+                                请选择类别
                             </span>
                             <ul class="selectMenu" id="jsSelectMenu">
-                                <li data-value="course">公开课</li>
-                                <li data-value="org">课程机构</li>
-                                <li data-value="teacher">授课老师</li>
+                                <li data-value="course">课程列表</li>
+                                <li data-value="org">实验作业</li>
+                                <li data-value="teacher">教师介绍</li>
                             </ul>
                         </div>
                         <input id="search_keywords" class="fl" type="text" value="" placeholder="请输入搜索内容"/>
@@ -89,14 +89,14 @@
                                     href="{% url 'index' %}">首页</a></li>
                             <li {% if request.path|slice:'7' == '/course' %}class="active"{% endif %}>
                                 <a href="{% url 'course:course_list' %}">
-                                    公开课<img class="hot" src="{% static 'images/nav_hot.png' %}">
+                                    课程列表<img class="hot" src="{% static 'images/nav_hot.png' %}">
                                 </a>
                             </li>
                             <li {% if request.path|slice:'12' == '/org/teacher' %}class="active"{% endif %}>
-                                <a href="{% url 'org:teacher_list' %}">授课教师</a>
+                                <a href="{% url 'org:teacher_list' %}">教师介绍</a>
                             </li>
                             <li {% if request.path|slice:'9' == '/org/list' %}class="active" {% endif %}><a
-                                    href="{% url 'org:org_list' %}">授课机构</a></li>
+                                    href="{% url 'org:org_list' %}">实验作业</a></li>
                         </ul>
                     </div>
                 </div>

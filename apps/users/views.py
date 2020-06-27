@@ -40,6 +40,7 @@ class CustomBackend(ModelBackend):
 class IndexView(View):
     '''首页'''
     def get(self,request):
+        #todo 轮播图model调用的位置
         #轮播图
         all_banners = Banner.objects.all().order_by('index')
         #课程

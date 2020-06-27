@@ -9,7 +9,14 @@
     <div class="banner">
 			<div class="wp">
 				<div class="fl">
-					<div class="imgslide">
+                    <div class="imgslide">
+                        <ul class="imgs">
+                                <li><a href=""><img width="483" height="472" src="{% static 'images/mysql.jpg' %}" /></a></li>
+                                <li><a href=""><img width="483" height="472" src="{% static 'images/mysql.jpg' %}" /></a></li>
+                                <li><a href=""><img width="483" height="472" src="{% static 'images/mysql.jpg' %}" /></a></li>
+                        </ul>
+                    </div>
+					{% comment %}<div class="imgslide">
 						<ul class="imgs">
                             {% for banner in all_banners %}
                             <li>
@@ -20,7 +27,7 @@
                                 </li>
                             {% endfor %}
 						</ul>
-					</div>
+					</div>{% endcomment %}
 					<div class="unslider-arrow prev"></div>
 					<div class="unslider-arrow next"></div>
 				</div>

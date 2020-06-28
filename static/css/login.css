@@ -48,16 +48,16 @@ a:hover{
 
 .login-box{
     width:853px;
-    margin:150px auto;
+    margin:1px auto;
 }
 .hd-login{
     position:relative;
     height:68px;
     line-height:68px;
-    margin-bottom:15px;
-    padding-top:32px;
-    padding-left:190px;
-    background:url(../images/logo.png) no-repeat 0 center;
+    margin-bottom:10px;
+    padding-top:70px;
+    padding-left:20px;
+    /*background:url(../images/logo.png) no-repeat 0 center;*/
 }
 .index-logo{
     position:absolute;

@@ -145,8 +145,29 @@
                                 </div>
                             </div>
 
-
                             <div class="cp-other-learned  js-comp-tabs">
+                                <div class="cp-header clearfix">
+                                    <h2 class="cp-tit l">该课的同学还学过</h2>
+                                </div>
+                                <div class="cp-body">
+                                    <div class="cp-tab-pannel js-comp-tab-pannel" data-pannel="course" style="display: block">
+                                        <!-- img 200 x 112 -->
+                                        <ul class="other-list">
+                                            {% for relate_course in relate_courses %}
+                                            <li class="curr">
+                                                <a href="{% url 'course:course_detail' relate_course.id %}" target="_blank">
+                                                    <img src="{{ MEDIA_URL }}{{ relate_course.image }}" alt="{{ relate_course.name }}">
+                                                    <span class="name autowrap">{{ relate_course.name }}</span>
+                                                </a>
+                                            </li>
+                                            {% endfor %}
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                            {% comment %}<div class="cp-other-learned  js-comp-tabs">
                                 <div class="cp-header clearfix">
                                     <h2 class="cp-tit l">该课的同学还学过</h2>
                                 </div>
@@ -204,7 +225,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
+                            </div>{% endcomment %}
 
                         </div>
                     </div>

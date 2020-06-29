@@ -25,8 +25,9 @@
 
             <div class="top">
                 <div class="wp">
-{#                    <div class="fl"><p>服务电话：<b>33333333</b></p></div>#}
-                    <div  class="fl"><p><a style="color: white;font-size: 18px;" href="http://www.cnblogs.com/derek1184405959/"><b>我的博客园地址</b></a></p></div>
+                    {#                    <div class="fl"><p>服务电话：<b>33333333</b></p></div>#}
+                    <div class="fl"><p><a style="color: white;font-size: 18px;"
+                                          href="http://www.cnblogs.com/derek1184405959/"><b>我的博客园地址</b></a></p></div>
                     <!--登录后跳转-->
 
                     {% if request.user.is_authenticated %}
@@ -60,9 +61,10 @@
 
             <div class="middle companyheader">
                 <div class="wp">
-{#                    <img class="fl" style="width: 112px;height: 103px" src="{{ MEDIA_URL }}{{ course_org.image }}"/>#}
+                    {#                    <img class="fl" style="width: 112px;height: 103px" src="{{ MEDIA_URL }}{{ course_org.image }}"/>#}
 
-                    <a href="/"><img class="fl" style="width: 112px;height: 103px" src="{{ MEDIA_URL }}{{ course_org.image }}"/></a>
+                    <a href="/"><img class="fl" style="width: 112px;height: 103px"
+                                     src="{{ MEDIA_URL }}{{ course_org.image }}"/></a>
                     <div class="head fl">
                         <h1>
                             {{ course_org.name }}
@@ -167,20 +169,20 @@
 
     $(function () {
         var $precision = $('.precision'),
-                score = $precision.attr('data-star-scope'),
-                option = {
-                    half: true,
-                    path: '{% static 'images/' %}',
-                    precision: true,
-                    size: 24,
-                    starOff: 'g_star.png',
-                    starOn: 'r_star.png',
-                    starHalf: 'h_star.png',
-                    hints: ['极差', '差', '一般', '好评', '非常满意'],
-                    noRatedMsg: '暂时还未获得评价！',
-                    readOnly: true,
-                    score: score
-                };
+            score = $precision.attr('data-star-scope'),
+            option = {
+                half: true,
+                path: '{% static 'images/' %}',
+                precision: true,
+                size: 24,
+                starOff: 'g_star.png',
+                starOn: 'r_star.png',
+                starHalf: 'h_star.png',
+                hints: ['极差', '差', '一般', '好评', '非常满意'],
+                noRatedMsg: '暂时还未获得评价！',
+                readOnly: true,
+                score: score
+            };
         $precision.raty(option);
 
         $('.jsFavBtn').on('click', function () {

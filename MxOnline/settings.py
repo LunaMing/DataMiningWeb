@@ -129,10 +129,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 EMAIL_HOST = "smtp.qq.com"
 EMAIL_PORT = 25
-EMAIL_HOST_USER = "1184405959@qq.com"
-EMAIL_HOST_PASSWORD = "dwjybikeqdawhhbc"
+EMAIL_HOST_USER = "1434691914@qq.com"
+EMAIL_HOST_PASSWORD = "oidkvcbobvpqffcj"
 EMAIL_USE_TLS= True
-EMAIL_FROM = "1184405959@qq.com"
+EMAIL_FROM = "1434691914@qq.com"
 
 
 # Internationalization

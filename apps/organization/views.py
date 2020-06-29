@@ -57,7 +57,7 @@ class OrgView(View):
             page = request.GET.get('page', 1)
         except PageNotAnInteger:
             page = 1
-        # 这里指从allorg中取五个出来，每页显示5个
+        # 这里指从allorg中取五个出来，每页显示2个
         p = Paginator(all_orgs, 2, request=request)
         orgs = p.page(page)
 
@@ -260,7 +260,8 @@ class TeacherListView(View):
             page = request.GET.get('page', 1)
         except PageNotAnInteger:
             page = 1
-        p = Paginator(all_teachers, 1, request=request)
+        # 教师每页显示4个
+        p = Paginator(all_teachers, 4, request=request)
         teachers = p.page(page)
         return render(request, "teachers-list.html", {
             "all_teachers": teachers,

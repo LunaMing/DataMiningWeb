@@ -44,11 +44,11 @@
                             </dt>
                             <dd>
                                 <a href="{% url 'org:teacher_detail' teacher.id %}">
-                                    <h1>{{ teacher.name }}<span class="key picbig">金牌教师</span></h1>
+                                    <h1>{{ teacher.name }}<span class="key picbig"></span></h1>
                                 </a>
                                 <ul class="cont">
                                     <li>工作年限：<span>{{ teacher.work_years }}年</span></li>
-                                    <li>就职公司：<span>{{ teacher.work_company }}</span></li>
+                                    <li>所在单位：<span>{{ teacher.work_company }}</span></li>
                                     <li>工作职位：<span>{{ teacher.work_position }}&nbsp;</span></li>
                                     <li>教学特点：<span>{{ teacher.points }}</span></li>
                                 </ul>

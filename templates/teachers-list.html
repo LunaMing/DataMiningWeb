@@ -37,7 +37,7 @@
                                              src="{{ MEDIA_URL }}{{ teacher.image }}"/>
                                     </div>
                                 </a>
-                                <div class="btn">
+                                {% comment %}<div class="btn">
                                     <div class="fr btn2 bdsharebuttonbox"
                                          data-text="授课教师-奥巴马-慕学在线"
                                          data-desc="我在#慕课网#发现了教师“奥巴马”，对学习中的小伙伴很有帮助，一起来看看吧。"
@@ -46,17 +46,17 @@
                                         <span class="fl">分享</span>
                                         <a href="#" class="bds_more" data-cmd="more"></a>
                                     </div>
-                                </div>
+                                </div>{% endcomment %}
                             </dt>
                             <dd>
                                 <a href="{% url 'org:teacher_detail' teacher.id %}">
-                                    <h1>{{ teacher.name }}<span class="key picbig">金牌讲师</span></h1>
+                                    <h1>{{ teacher.name }}<span class="key picbig"></span></h1>
                                 </a>
                                 <ul class="cont">
                                     <li>工作年限：<span>{{ teacher.work_years }}年</span></li>
                                     <li>工作职位：<span>{{ teacher.work_position }}</span></li>
-                                    <li>就职公司：<span>{{ teacher.work_company }}&nbsp;</span></li>
-                                    <li>年龄：<span>{{ teacher.teacher_age }}岁</span></li>
+                                    <li>所在单位：<span>{{ teacher.work_company }}&nbsp;</span></li>
+                                    <li>教师年龄：<span>{{ teacher.teacher_age }}岁</span></li>
                                     <li>教学特点：<span>{{ teacher.points }}</span></li>
                                 </ul>
                             </dd>

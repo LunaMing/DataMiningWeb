@@ -2,7 +2,7 @@
 
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% block title %}讲师详情{% endblock %}
+{% block title %}教师详情{% endblock %}
 
 {% block custom_bread %}
     <section>
@@ -122,7 +122,7 @@
                 <div class="butler_detail_cont">
                     <div class="butler_list_box">
                         <div class="right layout">
-                            <div class="head">讲师排行榜</div>
+                            <div class="head">排行榜</div>
                             {% for hot_teacher in sorted_teacher %}
                                 <dl class="des">
                                     <span class="num fl">1</span>

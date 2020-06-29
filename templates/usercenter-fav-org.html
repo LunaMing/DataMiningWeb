@@ -27,7 +27,7 @@
             <div class="head">
                 <ul class="tab_header messagehead">
                     <li class="active"><a href="{% url 'users:myfav_org' %}">课程机构</a></li>
-                    <li><a href="{% url 'users:myfav_teacher' %}">授课教师 </a></li>
+                    <li><a href="{% url 'users:myfav_teacher' %}">授课教师</a></li>
                     <li><a href="{% url 'users:myfav_course' %}">公开课程</a></li>
                 </ul>
             </div>
@@ -37,11 +37,11 @@
                         <dl class="des fr">
                             <dt>
                                 <a href="{% url 'org:org_home' org.id %}">
-                                    <img width="160" height="90" src="{{ MEDIA_URL }}{{ org.image }}"/>
+                                    <img width="160" height="160" src="{{ MEDIA_URL }}{{ org.image }}"/>
                                 </a>
                             </dt>
                             <dd>
-                                <h1><a href="org-detail-homepage.html">{{ org.name }}</a></h1>
+                                <h1><a href="{% url 'org:org_home' org.id %}">{{ org.name }}</a></h1>
                                 <div class="pic fl" style="width:auto;">
 
                                     <img src="{% static 'images/authentication.png' %}"/>

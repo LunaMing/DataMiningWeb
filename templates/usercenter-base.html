@@ -8,7 +8,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <title>{% block title %}
-        个人信息- 慕学在线网
+        个人信息
     {% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
@@ -29,7 +29,7 @@
         <div class="header2 header">
             <div class="top">
                 <div class="wp">
-                    <div class="fl"><p>服务电话：<b>33333333</b></p></div>
+                    {#<div class="fl"><p>服务电话：<b>33333333</b></p></div>#}
                     <!--登录后跳转-->
                     {% if request.user.is_authenticated %}
                         <div class="personal">
@@ -61,8 +61,8 @@
 
             <div class="middle">
                 <div class="wp">
-                    <a href="{% url 'index' %}"><img class="fl" src="{% static 'images/logo2.png' %}"/></a>
-                    <h1>我的慕学网</h1>
+                    <a href="{% url 'index' %}"><img class="fl" src="{% static 'images/logo.png' %}"/></a>
+                    <h1>在线实验教学平台</h1>
                 </div>
             </div>
         </div>
@@ -262,7 +262,7 @@
 <script type="text/javascript">
     $('.jsDeleteFav_course').on('click', function () {
         var _this = $(this),
-                favid = _this.attr('data-favid');
+            favid = _this.attr('data-favid');
         alert(favid)
         $.ajax({
             cache: false,
@@ -282,7 +282,7 @@
 
     $('.jsDeleteFav_teacher').on('click', function () {
         var _this = $(this),
-                favid = _this.attr('data-favid');
+            favid = _this.attr('data-favid');
         $.ajax({
             cache: false,
             type: "POST",
@@ -302,7 +302,7 @@
 
     $('.jsDeleteFav_org').on('click', function () {
         var _this = $(this),
-                favid = _this.attr('data-favid');
+            favid = _this.attr('data-favid');
         $.ajax({
             cache: false,
             type: "POST",
@@ -322,17 +322,17 @@
 
 <script>
     var shareUrl = '',
-            shareText = '',
-            shareDesc = '',
-            shareComment = '';
+        shareText = '',
+        shareDesc = '',
+        shareComment = '';
     $(function () {
         $(".bdsharebuttonbox a").mouseover(function () {
             var type = $(this).attr('data-cmd'),
-                    $parent = $(this).parent('.bdsharebuttonbox'),
-                    fxurl = $parent.attr('data-url'),
-                    fxtext = $parent.attr('data-text'),
-                    fxdesc = $parent.attr('data-desc'),
-                    fxcomment = $parent.attr('data-comment');
+                $parent = $(this).parent('.bdsharebuttonbox'),
+                fxurl = $parent.attr('data-url'),
+                fxtext = $parent.attr('data-text'),
+                fxdesc = $parent.attr('data-desc'),
+                fxcomment = $parent.attr('data-comment');
             switch (type) {
                 case 'tsina':
                 case 'tqq':
@@ -351,6 +351,7 @@
             }
         });
     });
+
     function SetShareUrl(cmd, config) {
         if (shareUrl) {
             config.bdUrl = "" + shareUrl;
@@ -367,6 +368,7 @@
 
         return config;
     }
+
     window._bd_share_config = {
         "common": {
             "onBeforeClick": SetShareUrl,
@@ -379,7 +381,7 @@
             "bdSize": "16"
         }
     };
-    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com../api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+    with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com../api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
 </script>
 
 </body>

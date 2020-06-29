@@ -96,7 +96,7 @@
                                 <dd>
                                     <a target="_blank" href="{% url 'course:course_detail' hot_course.id %}">
                                         <h2> {{ hot_course.name }}</h2></a>
-                                    <span class="fl">难度：<i class="key">{{ hot_course.get_degree_display }}</i></span>
+                                    <span class="fl">学分：<i class="key">{{ hot_course.get_degree_display }}</i></span>
                                 </dd>
                             </dl>
                         {% endfor %}

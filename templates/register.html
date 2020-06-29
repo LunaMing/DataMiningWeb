@@ -74,9 +74,9 @@
         <div class="wp header-box">
             <p class="fl hd-tips">在线学习平台</p>
             <ul class="fr hd-bar">
-                <li>服务电话：<span>4001008031</span></li>
-                <li><a href="{% url 'login' %}">[登录]</a></li>
-                <li class="active"><a href="{% url 'register' %}">[注册]</a></li>
+                {#<li>服务电话：<span>4001008031</span></li>#}
+                <li><a href="{% url 'login' %}">【登录】</a></li>
+                <li class="active"><a href="{% url 'register' %}">【注册】</a></li>
             </ul>
         </div>
     </div>
@@ -92,16 +92,9 @@
             <div class="fl slide">
                 <div class="imgslide">
                     <ul class="imgs">
-
-                        <li><a href=""><img width="483" height="472"
-                                            src="{% static 'images/57a801860001c34b12000460.jpg' %}"/></a></li>
-
-                        <li><a href=""><img width="483" height="472"
-                                            src="{% static 'images/57a801860001c34b12000460.jpg' %}"/></a></li>
-
-                        <li><a href=""><img width="483" height="472"
-                                            src="{% static 'images/57a801860001c34b12000460.jpg' %}"/></a></li>
-
+                        <li><a href=""><img width="483" height="472" src="{% static 'images/login/1.jpg' %}"/></a></li>
+                        <li><a href=""><img width="483" height="472" src="{% static 'images/login/2.jpg' %}"/></a></li>
+                        <li><a href=""><img width="483" height="472" src="{% static 'images/login/3.jpg' %}"/></a></li>
                     </ul>
                 </div>
                 <div class="unslider-arrow prev"></div>

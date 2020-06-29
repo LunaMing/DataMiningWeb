@@ -94,10 +94,10 @@
 
 
             <div class="right layout">
-                <div class="head">排行榜</div>
+                <div class="head">人气教师</div>
                 {% for hot_teacher in sorted_teacher %}
                     <dl class="des">
-                        <span class="num fl">1</span>
+                        <span class="num fl">※</span>
                         <a href="{% url 'org:teacher_detail' hot_teacher.id %}">
                             <dt>
                                 <img width="50" height="50" class="scrollLoading"
